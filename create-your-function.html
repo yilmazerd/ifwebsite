@@ -86,7 +86,7 @@ textarea {
           <form class="">
             <div class="form-group"> <label>Code Block</label> 
               <textarea id="codeBlockArea">Some text...</textarea>Enter your function</small> </div>
-            <button type="submit" onclick="getUrlFromSubmit()" class="btn btn-primary btn-lg btn-block">Generate my function</button>
+            <button type="button" onclick="getUrlFromSubmit()" class="btn btn-primary btn-lg btn-block">Generate my function</button>
           </form>
         </div>
       </div>
@@ -94,7 +94,18 @@ textarea {
   </div>
   </div>
 
-  <div class="py-5 text-center">
+    <div id="functionError" class="py-5 text-center" style="display: none">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-lg-8">
+          <h1>There is an error in your code, see the error message</h1>
+          <h1 id="errorMessage">Create your function</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="functionSuccess" class="py-5 text-center" style="display: none">
     <div class="container">
       <div class="row">
         <div class="mx-auto col-lg-8">
@@ -119,17 +130,29 @@ textarea {
 function getUrlFromSubmit() {
 
  
-    url = 'https://run.mocky.io/v3/3311038c-124b-4ea2-bb48-a6b3e73a1d4d';
-    $( "#urlId" ).empty();
-    $( "#codeEnterBlock" ).hide();
+    //url = 'https://run.mocky.io/v3/abcc50f7-3bc3-42a8-9950-a0c4c6b9f642';
+    url = 'https://run.mocky.io/v3/f8348b7d-06e1-4fcc-b9fe-1724d40c42d5';
+
   // Send the data using post
   //var posting = $.post( url, { s: term } );
   var posting = $.post( url);
  
   // Put the results in a div
   posting.done(function( data ) {
-    //var content = $( data ).find( "#content" );
-    $( "#urlId" ).empty().append( data.name );
+    //TODO: Handle the error
+    let errorMessage = data.error;
+    if (errorMessage) {
+      $( "#functionError" ).show();
+      $( "#errorMessage" ).empty().append( errorMessage );  
+
+      // show error
+    } else {
+      $( "#urlId" ).empty();
+      $( "#codeEnterBlock" ).hide();
+      $( "#functionSuccess" ).show();
+      $( "#urlId" ).empty().append( data.url );  
+    }
+    
   })};
 
 
