@@ -86,7 +86,21 @@ textarea {
           <form class="">
             <div class="form-group"> <label>Code Block</label> 
               <textarea id="codeBlockArea">Some text...</textarea>Enter your function</small> </div>
-            <button type="submit" onclick="getUrlFromSubmit()" class="btn btn-primary btn-lg btn-block">Generate my function</button>
+
+
+    <div id="functionError" class="py-5 text-center" style="display: none">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-lg-8">
+          <h4>There is an error in your code, see the error message</h4>
+          <h4 id="errorMessage">Create your function</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+            <button type="button" onclick="getUrlFromSubmit()" class="btn btn-primary btn-lg btn-block">Generate my function</button>
           </form>
         </div>
       </div>
@@ -94,7 +108,7 @@ textarea {
   </div>
   </div>
 
-  <div class="py-5 text-center">
+  <div id="functionSuccess" class="py-5 text-center" style="display: none">
     <div class="container">
       <div class="row">
         <div class="mx-auto col-lg-8">
@@ -119,18 +133,50 @@ textarea {
 function getUrlFromSubmit() {
 
  
-    url = 'https://run.mocky.io/v3/3311038c-124b-4ea2-bb48-a6b3e73a1d4d';
-    $( "#urlId" ).empty();
-    $( "#codeEnterBlock" ).hide();
+    //url = 'https://run.mocky.io/v3/abcc50f7-3bc3-42a8-9950-a0c4c6b9f642';
+    url = 'http://localhost:5000/formation/codeblock';
+
   // Send the data using post
   //var posting = $.post( url, { s: term } );
-  var posting = $.post( url);
+  // var posting = $.post( url, { compiler: "JAVA11", code: "test" }, function(data) {}, "json");
  
-  // Put the results in a div
-  posting.done(function( data ) {
-    //var content = $( data ).find( "#content" );
-    $( "#urlId" ).empty().append( data.name );
-  })};
+  // // Put the results in a div
+  // posting.done(function( data ) {
+  //   //TODO: Handle the error
+  //   let errorMessage = data.error;
+  //   if (errorMessage) {
+  //     $( "#functionError" ).show();
+  //     $( "#errorMessage" ).empty().append( errorMessage );  
+
+  //     // show error
+  //   } else {
+  //     $( "#urlId" ).empty();
+  //     $( "#codeEnterBlock" ).hide();
+  //     $( "#functionSuccess" ).show();
+  //     $( "#urlId" ).empty().append( data.url );  
+  //   }
+    
+  // })
+      var data = JSON.stringify({compiler: "JAVA11", code: "ts", userPrimaryKey: "13", userSecondaryKey: "41"});
+    $.ajax({ 
+            type: "POST",
+            url: "http://localhost:5000/formation/codeblock",
+            data: data, 
+            contentType: "application/json", 
+            traditional: true,
+            success: function (data) { 
+                  $( "#urlId" ).empty();
+                  $( "#codeEnterBlock" ).hide();
+                  $( "#functionSuccess" ).show();
+                  $( "#urlId" ).empty().append( data.url ); 
+            },
+            error:function (xhr, ajaxOptions, thrownError) { 
+                $( "#functionError" ).show(); 
+                $( "#errorMessage" ).empty().append( errorMessage );  
+            }
+    }); 
+
+};
 
 
   </script>  
