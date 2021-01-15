@@ -157,7 +157,7 @@ function getUrlFromSubmit() {
   //   }
     
   // })
-      var data = JSON.stringify({data: "sts", classID: "ts"});
+      var data = JSON.stringify({compiler: "JAVA11", code: "ts", userPrimaryKey: "13", userSecondaryKey: "41"});
     $.ajax({ 
             type: "POST",
             url: "http://localhost:5000/formation/codeblock",
@@ -165,12 +165,14 @@ function getUrlFromSubmit() {
             contentType: "application/json", 
             traditional: true,
             success: function (data) { 
-                //$("#grid").html(data);
+                  $( "#urlId" ).empty();
+                  $( "#codeEnterBlock" ).hide();
+                  $( "#functionSuccess" ).show();
+                  $( "#urlId" ).empty().append( data.url ); 
             },
             error:function (xhr, ajaxOptions, thrownError) { 
-                //alert(xhr.status); 
-                //alert(ajaxOptions); 
-                //alert(thrownError); 
+                $( "#functionError" ).show(); 
+                $( "#errorMessage" ).empty().append( errorMessage );  
             }
     }); 
 
