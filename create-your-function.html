@@ -180,7 +180,15 @@ function getUrlFromSubmit() {
 
 };
 
-function escapeForm() {}
+
+function escapeForm() {
+  let clientCodeText = $("#codeBlockArea" ).val();
+  clientCodeText = clientCodeText.replaceAll(/[\t\n\r ]+/g," ");
+  clientCodeText = clientCodeText.replaceAll("\"", '\\"');
+  clientCodeText = clientCodeText.replaceAll('""', '\"');
+  $( "#escapedData" ).val(clientCodeText);
+
+}
 
 
   </script>  
