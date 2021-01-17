@@ -1,5 +1,6 @@
 $(function () {
     var bar = '';
+    bar += '<div class="col-md-3 col-sm-3 col-xs-3" style="min-height: 130px;">&nbsp;</div>'
     bar += '<div class="">'
     bar += '<div class="container">'
     bar += '<div class="row">'
