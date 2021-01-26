@@ -77,7 +77,7 @@
             <h5 class="">Start with one of the following examples as template</h5>
 
             <div class="list-group">
-              <a class="list-group-item list-group-item-action" id="sampleList1">Simple API response with custom HTTP response code</a>
+              <a class="list-group-item list-group-item-action active" id="sampleList1">Simple API response with custom HTTP response code</a>
             </div>
             <form class="">
               <div class="form-group pt-2">
@@ -147,12 +147,13 @@
       //     $( "#urlId" ).empty().append( data.url );  
       //   }
       // })
-      var data = JSON.stringify({
-        compiler: "JAVA11",
-        code: "ts",
-        userPrimaryKey: "13",
-        userSecondaryKey: "41"
-      });
+      // var dataNot = JSON.stringify({
+      //   compiler: "JAVA11",
+      //   code: "ts",
+      //   userPrimaryKey: "13",
+      //   userSecondaryKey: "41"
+      // });
+
       $.ajax({
         headers: { 'compiler': 'JAVA11' },
         type: "POST",
@@ -164,7 +165,7 @@
           $("#urlId").empty();
           $("#codeEnterBlock").hide();
           $("#functionSuccess").show();
-          $("#urlId").empty().append(data.url);
+          $("#urlId").empty().append('http://htu.instantfunction.com/run/' + data.url);
         },
         error: function(xhr, ajaxOptions, thrownError) {
           $("#functionError").show();
@@ -177,9 +178,6 @@
   <script type="text/javascript">
 
   </script>
-
-
-  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
 </body>
 
 </html>
