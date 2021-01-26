@@ -147,16 +147,17 @@
       //     $( "#urlId" ).empty().append( data.url );  
       //   }
       // })
-      var data = JSON.stringify({
-        compiler: "JAVA11",
-        code: "ts",
-        userPrimaryKey: "13",
-        userSecondaryKey: "41"
-      });
+      // var dataNot = JSON.stringify({
+      //   compiler: "JAVA11",
+      //   code: "ts",
+      //   userPrimaryKey: "13",
+      //   userSecondaryKey: "41"
+      // });
+
       $.ajax({
         headers: { 'compiler': 'JAVA11' },
         type: "POST",
-        url: "http://htu.instantfunction.com/formation/codeblock2",
+        url: "http://localhost:5000/formation/codeblock2",
         data: $("#codeBlockArea").val(),
         contentType: "text/plain",
         traditional: true,

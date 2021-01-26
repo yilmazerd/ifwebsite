@@ -24,7 +24,7 @@ exampleOneCode+= '        }\n'
 
 exampleOneCode+= '        @Override\n'
 exampleOneCode+= '        public String toString() {\n'
-exampleOneCode+= '            return "{ \"firstName\" : "+firstName+", \"lastName\" : "+lastName+" }";\n'
+exampleOneCode+= '            return "{ \\"firstName\\" : "+firstName+", \\"lastName\\" : "+lastName+" }";\n'
 exampleOneCode+= '        }\n'
 exampleOneCode+= '    }\n'
 
