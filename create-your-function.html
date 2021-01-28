@@ -157,7 +157,7 @@
       $.ajax({
         headers: { 'compiler': 'JAVA11' },
         type: "POST",
-        url: "http://localhost:5000/formation/codeblock2",
+        url: "https://htu.instantfunction.com/formation/codeblock2",
         data: $("#codeBlockArea").val(),
         contentType: "text/plain",
         traditional: true,
@@ -165,7 +165,7 @@
           $("#urlId").empty();
           $("#codeEnterBlock").hide();
           $("#functionSuccess").show();
-          $("#urlId").empty().append('http://htu.instantfunction.com/run/' + data.url);
+          $("#urlId").empty().append('https://htu.instantfunction.com/run/' + data.url);
         },
         error: function(xhr, ajaxOptions, thrownError) {
           $("#functionError").show();
