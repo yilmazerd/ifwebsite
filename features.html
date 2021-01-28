@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+
+<body>
+  <!-- Navigation bar loader-->
+  <script type="text/javascript" src="navbar.js"></script>
+  <!-- Navigation bar -->
+  <div id="nav-placeholder">
+  </div>
+  <!-- End Of Navigation bar -->
+  <div class="pt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12"></div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class=""><b>Sample Engineering Applications</b></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item"> <a href="" class="active nav-link" data-toggle="pill" data-target="#tabone">Simple Response</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="" data-toggle="pill" data-target="#tabtwo">Random Errors and Delay</a> </li>
+            <li class="nav-item"> <a href="" class="nav-link" data-toggle="pill" data-target="#tabthree">Optimization Applications</a> </li>
+          </ul>
+        </div>
+        <div class="col-9">
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="tabone" role="tabpanel">
+              <p class="">Using instant function, you can create a simple JSON response that represents production response from one of the API's that you need to call. You can simulate a variety of scenarios in the response. As an example, suppose you are developing a financial application and you call an api to get credit score of an individual. Suppose the respoinse of that 3rd party API has the following structure:<br><br>{&nbsp;<br>&nbsp; "creditScore": "400",&nbsp;<br>&nbsp; "Report update date": "2020-10-10"&nbsp;<br>}<br><br>Suppose you need to simulate cases to test against credit score scenarios. You can write a simple random generator and use instant function to create random responses to test your code.</p>
+            </div>
+            <div class="tab-pane fade" id="tabtwo" role="tabpanel">
+              <p class="">Following up our finance application, you can simulate cases where the response is not 200 but 40x or 50x. For instance if you are expecting 95% reliability, you can create a random 5% error and when that happens return the erroneous response.</p>
+            </div>
+            <div class="tab-pane fade" id="tabthree" role="tabpanel">
+              <p class="">Especially with optimization tasks, it can be difficult to have a good estimate for the initial variables. Once the optimization code is defined then you can define initial variables in the request body to instant function and run instant function in a parallel form against these varitey of initializations. I will add more examples on this use case.&nbsp;</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-center"><b>Current Functionality and Limitations&nbsp;</b></h3>
+          <p class="">As of today, Instant Function is Java only. I'm going to add Python next.<br><br><br><b>Execution</b><br>Basic execution of Java programs are around feature&nbsp;"Launch Single-File Source-Code Programs" introduced in JDK 11 release. Meaning you can test your code before submitting by typing "Java &lt;myCodeName.java&gt;" in your terminal. This limits the libraries that can be imported but since our scope is to run simple functinoality in the API, that has not been an issue. Let me know if your use case requires a library that is beyond single file source code functionality. I can take a look.<br><br><b>Response Code</b><br>Essentially the program will return what is being logged. You can customize the http response code. In order to do this, you need to print the following statement<br>System.out.println("httpStatusCode:"+httpStatusCode);<br>if this is not printed, then it will return 200.. I plan to keep this structure for python and other platforms. Shoot an email if you have a better idea..<br><br><br><b>Response Structure</b><br>If you customize the response code then we look for a log statement in the following structure<br>System.out.println("responseObject:"+responseObject);<br>once found, we return response object as JSON (at least we try). Response format is JSON and currently can not be edited. If you have a use case where you need to return non-json, shoot an email with your use case.<br><br></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bottom nav placeholder -->
+  <script type="text/javascript" src="navbottom.js"></script>
+  <div id="bottomNavPlaceHolder"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
