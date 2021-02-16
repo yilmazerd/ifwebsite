@@ -127,45 +127,18 @@
   <script>
     // get id and load 
     function getUrlFromSubmit() {
-      //url = 'https://run.mocky.io/v3/abcc50f7-3bc3-42a8-9950-a0c4c6b9f642';
-      //url = 'http://localhost:5000/formation/codeblock';
-      // Send the data using post
-      //var posting = $.post( url, { s: term } );
-      // var posting = $.post( url, { compiler: "JAVA11", code: "test" }, function(data) {}, "json");
-      // // Put the results in a div
-      // posting.done(function( data ) {
-      //   //TODO: Handle the error
-      //   let errorMessage = data.error;
-      //   if (errorMessage) {
-      //     $( "#functionError" ).show();
-      //     $( "#errorMessage" ).empty().append( errorMessage );  
-      //     // show error
-      //   } else {
-      //     $( "#urlId" ).empty();
-      //     $( "#codeEnterBlock" ).hide();
-      //     $( "#functionSuccess" ).show();
-      //     $( "#urlId" ).empty().append( data.url );  
-      //   }
-      // })
-      // var dataNot = JSON.stringify({
-      //   compiler: "JAVA11",
-      //   code: "ts",
-      //   userPrimaryKey: "13",
-      //   userSecondaryKey: "41"
-      // });
-
       $.ajax({
         headers: { 'compiler': 'JAVA11' },
         type: "POST",
-        url: "https://htu.instantfunction.com/formation/codeblock2",
+        url: "https://44pf7abe6g.execute-api.us-east-1.amazonaws.com/uat/formation/codeblock2",
         data: $("#codeBlockArea").val(),
-        contentType: "text/plain",
+        contentType: "application/json",
         traditional: true,
         success: function(data) {
           $("#urlId").empty();
           $("#codeEnterBlock").hide();
           $("#functionSuccess").show();
-          $("#urlId").empty().append('https://htu.instantfunction.com/run/' + data.url);
+          $("#urlId").empty().append('https://exe.instantfunction.com/run/' + data.url);
         },
         error: function(xhr, ajaxOptions, thrownError) {
           $("#functionError").show();
