@@ -35,7 +35,8 @@
       <div class="container">
         <div class="row">
           <div class="mx-auto col-lg-8">
-            <h1 id="title01">Create your function</h1>
+            <h1 id="title01">Instant Mock</h1>
+            <h1 id="title01">Instantly mock a REST api behavior</h1>
           </div>
         </div>
       </div>
@@ -44,7 +45,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h5 class="">Build Your Function</h5>
+            <h5 class="">Insant Mock lets you easily create mocks. Simply enter what you'd like server to return and your mock is ready. There is no persistency in mock server, we don't save the data you send. Use your mock with all HTTP methods. Enter the response body you want to mock. </h5>
           </div>
         </div>
       </div>
@@ -55,25 +56,23 @@
           <div class="col-md-12">
             <div class="tab-content mt-2">
               <div class="tab-pane fade show active pb-2" id="tabone" role="tabpanel">
-                <p class="">Supports all http requests&nbsp;<br>Can return any http response code&nbsp;<br>Should be used to mimick an api behavior or run simple logic</p>
-                <h5 class="">Select your Platform<br></h5>
+                <p class="">Supports all http requests&nbsp;<br>Can return any http response code&nbsp;<br>Should be used to mimick an api behavior</p>
+                <h5 class="">Enter the HTTP Response Code you'd like to return</h5>
                 <div class="btn-group">
                   <select id="ddlViewBy" class="btn btn-primary dropdown-toggle">
-                    <option value="1" selected="selected">JAVA11</option>
+                    <option value="200" selected="selected">200-OK</option>
+                    <option value="202">202-ACCEPTED</option>
+                    <option value="400">400-BAD REQUEST</option>
+                    <option value="500">500-INTERNAL SERVER ERROR</option>
                   </select>
                 </div>
               </div>
-              <div class="tab-pane fade" id="tabthree" role="tabpanel">
-                <p class="">In my soul and absorb its power, like the form of a beloved mistress, then I often think with longing.</p>
-              </div>
-            </div>
-            <h5 class="">Start with one of the following examples as template</h5>
-            <div class="list-group">
-              <a class="list-group-item list-group-item-action active" id="sampleList1">Simple API response with custom HTTP response code</a>
+              <h5 class="">Enter the delay (in ms)</h5>
+              <div class="form-group"><input class="form-control" placeholder="0" required="required" type="text" id="responseDelayIn"></div>
             </div>
             <form class="">
               <div class="form-group pt-2">
-                <h5 class="">Enter your code</h5>
+                <h5 class="">Enter HTTP Response Body</h5>
                 <textarea id="codeBlockArea" class="h-75 form-control-sm" rows="15"></textarea>
               </div>
               <div id="functionError" class="py-5 text-center" style="display: none">
@@ -86,7 +85,9 @@
                   </div>
                 </div>
               </div>
-              <button type="button" onclick="getUrlFromSubmit()" class="btn btn-primary btn-lg btn-block">Generate my function</button>
+              <a href="#functionSuccess" style="text-decoration:none">
+                <button type="button" onclick="createMockApi()" class="btn btn-primary btn-lg btn-block">Generate my mock</button>
+              </a>
             </form>
           </div>
         </div>
@@ -94,11 +95,13 @@
     </div>
   </div>
   <div id="functionSuccess" class="py-5 text-center" style="display: none">
+    <!--   <div class="py-5 text-center" id="functionSuccess"> -->
     <div class="container">
-      <div class="row">
+      <div class="row text-left">
         <div class="mx-auto col-lg-8">
-          <h1>Your function is ready</h1>
-          <h1 id="urlId">Create your function</h1>
+          <h1>Your mock is ready, here's your URL.</h1>
+          <p>Note that it will support POST, GET, PATCH, DELETE and PUT requests</p>
+          <p id="urlId"> </p>
         </div>
       </div>
     </div>
@@ -116,33 +119,27 @@
       loadExample();
     });
   </script>
-  <script>
+  <script style="">
     // get id and load 
-    function getUrlFromSubmit() {
+    function createMockApi() {
       var compilerOptions = document.getElementById("ddlViewBy");
       var selectedCompiler = compilerOptions.options[compilerOptions.selectedIndex].text;
-      $.ajax({
-        headers: {
-          'compiler': selectedCompiler
-        },
-        //headers: { 'compiler': "JAVA11" },
-        type: "POST",
-        //url: "https://44pf7abe6g.execute-api.us-east-1.amazonaws.com/uat/formation/codeblock2",
-        url: "http://localhost:5000/formation/codeblock2",
-        data: $("#codeBlockArea").val(),
-        contentType: "application/json",
-        traditional: true,
-        success: function(data) {
-          $("#urlId").empty();
-          $("#codeEnterBlock").hide();
-          $("#functionSuccess").show();
-          $("#urlId").empty().append('https://exe.instantfunction.com/run/' + data.url);
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-          $("#functionError").show();
-          $("#errorMessage").empty().append(errorMessage);
-        }
-      });
+      var responseNoWhitespace = $("#codeBlockArea").val();
+      var responseCode = $("#ddlViewBy").val();
+      var responseDelay = Number.parseInt($("#responseDelayIn").val());
+      if (!Number.isInteger(responseDelay)) {
+        responseDelay = 0;
+      }
+      responseNoWhitespace = responseNoWhitespace.trim();
+      $("#functionSuccess").show();
+      $("#urlId").empty();
+      var urlToMock = '<p class="text-left bg-info">' + 'https://exe.instantfunction.com/mock/?responsecode=' + responseCode + '&responsedelay=' + responseDelay + '&responsecontent=' + responseNoWhitespace + '</p>';
+      $("#urlId").append(urlToMock);
+      //      $("#urlId").append("<p> Add this to your headers in your request </p>");
+      //      $("#urlId").append("<p>  'responsecontent: " + responseNoWhitespace + "'</p>");
+      //      $("#urlId").append("<p>  </p>");
+      //      $("#urlId").append("<p>  Here's a curl sample to mock this reresponse. Your mock would work with POST, PATCH, GET and DELETE</p>");
+      //      $("#urlId").append('<p class="text-left bg-info">' + "       curl --location --request POST  '" + 'localhost:5000/mock/?responsecode=' + responseCode + "&responsedelay=" + responseDelay + "' --header " + "'responsecontent: " + responseNoWhitespace + "' --data-raw " + "'{ }'");
     };
   </script>
   <script type="text/javascript">

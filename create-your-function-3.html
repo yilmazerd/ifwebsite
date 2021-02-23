@@ -44,7 +44,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h5 class="">Build Your Function</h5>
+            <h5 class="">Select the type of your function</h5>
           </div>
         </div>
       </div>
@@ -53,6 +53,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
+            <ul class="nav nav-tabs">
+              <li class="nav-item"> <a href="" class="active nav-link" data-toggle="tab" data-target="#tabone">API, Running some logic</a> </li>
+              <li class="nav-item"> <a style="pointer-events: none; cursor: default;" class="nav-link" href="" data-toggle="tab" data-target="#">Analytics (only for members)</a> </li>
+            </ul>
             <div class="tab-content mt-2">
               <div class="tab-pane fade show active pb-2" id="tabone" role="tabpanel">
                 <p class="">Supports all http requests&nbsp;<br>Can return any http response code&nbsp;<br>Should be used to mimick an api behavior or run simple logic</p>
@@ -60,6 +64,7 @@
                 <div class="btn-group">
                   <select id="ddlViewBy" class="btn btn-primary dropdown-toggle">
                     <option value="1" selected="selected">JAVA11</option>
+                    <option value="2">PYTHON37</option>
                   </select>
                 </div>
               </div>
