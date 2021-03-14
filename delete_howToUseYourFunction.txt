@@ -1,0 +1,38 @@
+How to use your function
+
+Instant function simply runs your function and returns the response. You don't need to do any provisioning or managing servers. Each function has a unique id. Each function supports POST, PATCH, GET, DELETE requests and behaves the same for these request. Pleaes see the example use before. The following examples are for function Id f0f1bbeb-01c9-414f-b30b-0f3dee4175c0, simply replace your id with this id.
+
+CURL:
+GET Request:
+curl --location --request GET 'https://exe.instantfunction.com/run/f0f1bbeb-01c9-414f-b30b-0f3dee4175c0'
+
+POST Request:
+curl --location --request POST 'https://exe.instantfunction.com/run/f0f1bbeb-01c9-414f-b30b-0f3dee4175c0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"sampleKey":"sampleValue"
+}'
+
+PATCH Request:
+curl --location --request PATCH 'https://exe.instantfunction.com/run/f0f1bbeb-01c9-414f-b30b-0f3dee4175c0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"sampleKey":"sampleValue"
+}'
+
+DELETE Request:
+curl --location --request DELETE 'https://exe.instantfunction.com/run/f0f1bbeb-01c9-414f-b30b-0f3dee4175c0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"sampleKey":"sampleValue"
+}'
+
+PUT Request:
+curl --location --request PUT 'https://exe.instantfunction.com/run/f0f1bbeb-01c9-414f-b30b-0f3dee4175c0' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"sampleKey":"sampleValue"
+}'
+
+
+

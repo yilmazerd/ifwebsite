@@ -1,0 +1,29 @@
+How to use instant function:
+
+Let's start with a simple example, let's say you are generating a function to mock an api response and your response is in the form of
+
+{
+	"UserId":"12",
+	"UserName":"Tom",
+	"UserLastName":"Jerry"
+}
+
+Step 1: Create the code
+
+In order to make this happen with instantfunction, we need need to simply write this response into standard output in the programming language of your choice. As the following:
+
+Java:
+
+
+
+Python:
+
+
+You can test this code in your local environment before submitting.
+
+Step 2: Create your function
+Simply copy paste the example code in to create your function page. You'll get a unique ID once you submit your code. With that uniqueid you can call your function. 
+
+Step 3: Add delay and response code (Optional)
+You can add some delay or a response code to your function as a query parameter.
+
